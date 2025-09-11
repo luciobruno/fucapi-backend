@@ -4,7 +4,6 @@ import { onRequest } from "firebase-functions/v2/https";
 import bodyParser from 'body-parser';
 import userRoutes from './routes/userRoutes';
 import cors from 'cors';
-import { setupSwagger } from './swaggerSetup';
 import dotenv from 'dotenv';
 
 //Configuração do dotenv
@@ -16,8 +15,6 @@ app.use(cors());
 
 // Middleware para analisar solicitações JSON
 app.use(bodyParser.json({ limit: '10mb' }));
-
-setupSwagger(app);
 
 // Configuração das rotas principais
 app.get('/', (req: Request, res: Response) => {

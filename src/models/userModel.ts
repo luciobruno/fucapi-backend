@@ -41,9 +41,7 @@ export default class UserModel {
         if (existsUser) {
             throw new Error("Usuário já cadastrado.");
         } else {
-            const asaasClientResponse = await registerAsaasClient(userData as AsaasClient);
             const newUserRef = usersRef.push();
-            userData.clientToken = asaasClientResponse.data.id;
             userData.createdAt = new Date().toISOString();
             userData.id = newUserRef.key;
             return newUserRef.set(userData);

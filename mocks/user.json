@@ -1,0 +1,17 @@
+{
+    "name": "Elikson Bastos Tavares",
+    "email": "Elikson.tech@gmail.com",
+    "birthdate": "10/10/2005",
+    "password": "123456",
+    "phone": "929999999999",
+    "cpfCnpj": "0123456789",
+    "postalCode": "690440000",
+    "city": "Manaus",
+    "address": "Rua A",
+    "addressNumber": "1020",
+    "complement": "Casa",
+    "province": "Planalto",
+    "state": "AM",
+    "gender": "M",
+    "notificationDisabled": false
+}

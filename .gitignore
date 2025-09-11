@@ -68,4 +68,5 @@ node_modules/
 # dataconnect generated files
 .dataconnect
 
-arteterapiaapp-firebase-adminsdk.json
+dist/
+fucapiweb-firebase-adminsdk.json

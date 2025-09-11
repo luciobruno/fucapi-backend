@@ -1,15 +1,15 @@
 import admin from 'firebase-admin';
 import { Storage } from '@google-cloud/storage';
 
-const keyPath = 'arteterapiaapp-firebase-adminsdk.json';
+const keyPath = 'fucapiweb-firebase-adminsdk.json';
 
 // Configure o Firebase Admin SDK com suas credenciais
 const serviceAccount = require(`../../${keyPath}`);
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://arteterapiaapp-default-rtdb.firebaseio.com",
-    storageBucket: 'gs://arteterapiaapp.appspot.com'
+    databaseURL: "https://fucapiweb-default-rtdb.firebaseio.com",
+    storageBucket: 'gs://fucapiweb.firebasestorage.app'
 });
 
 // Inicialize o Storage usando o arquivo de credenciais
