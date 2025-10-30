@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 import { onRequest } from "firebase-functions/v2/https";
 import bodyParser from 'body-parser';
 import userRoutes from './routes/userRoutes';
+import forumRoutes from './routes/forumRoute';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
@@ -21,6 +22,7 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Rota principal');
 });
 app.use('/user', userRoutes);
+app.use('/forum', forumRoutes);
 
 // Definição da porta do servidor
 console.log('process.env.PRODUCTION', process.env.PRODUCTION);
