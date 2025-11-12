@@ -1,0 +1,45 @@
+{
+  "name": "firebase-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "set PRODUCTION=false && npm run build && node dist/index.js",
+    "predeploy": "npm run build",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "swagger": "node src/swagger_doc.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.4",
+    "@types/nodemailer": "^6.4.17",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.7",
+    "swagger-autogen": "^2.23.7",
+    "typescript": "^5.4.4"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^7.10.1",
+    "@types/bcrypt": "^5.0.2",
+    "axios": "^1.6.8",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.19.2",
+    "firebase-admin": "^12.0.0",
+    "firebase-functions": "^4.9.0",
+    "nodemailer": "^6.10.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
