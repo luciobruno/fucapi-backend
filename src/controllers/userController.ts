@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import UserModel, { CompleletedContent, ContentNote, User } from '../models/userModel';
+import UserModel, { User } from '../models/userModel';
 import bcrypt from 'bcrypt';
 
 async function hashPassword(plainTextPassword: string): Promise<string> {
@@ -60,7 +60,7 @@ const userController = {
     login: async (email: string, password: string) => {
         try {
             const user = await UserModel.getUserByEmail(email);
-            const isMatch = await comparePassword(password, user.password);
+            const isMatch = user ? await comparePassword(password, user.password) : false;
             if (isMatch) {
                 return user;
             } else {
@@ -77,24 +77,7 @@ const userController = {
         } catch (error) {
             throw new Error(error.message ?? 'Dados de usuário incorretos.');
         }
-    },
-    addContentNote: async (email: string, contentNote: ContentNote) => {
-        try {
-            await UserModel.addContentNoteToUser(email, contentNote);
-            return 'ContentNote adicionada com sucesso';
-        } catch (error) {
-            throw new Error(error.message ?? 'Erro ao adicionar ContentNote');
-        }
-    },
-
-    addCompletedContent: async (email: string, completedContent: CompleletedContent) => {
-        try {
-            await UserModel.addCompletedContentToUser(email, completedContent);
-            return 'CompletedContent adicionada com sucesso';
-        } catch (error) {
-            throw new Error(error.message ?? 'Erro ao adicionar CompletedContent');
-        }
-    },
+    }
 };
 
 export default userController;
