@@ -1,10 +1,8 @@
-import { AsaasClient, registerAsaasClient } from '../config/asaasApi';
 import admin from '../config/firebaseConfig';
 import { transporter } from '../config/mailer';
+import { SchoolData } from './schoolDataModel';
 
 // Definição da interface para o modelo de usuário
-export interface ContentNote { contentId: string, itemId: number, note: string }
-export interface CompleletedContent { contentId: string, itemId: number }
 export interface User {
     name: string;
     email: string;
@@ -22,13 +20,10 @@ export interface User {
     gender: string;
     notificationDisabled: boolean;
     pendingUpdatePassword?: boolean;
-    completedContent?: CompleletedContent[];
-    contentNotes?: ContentNote[];
-    clientToken?: string;
-    profileId?: string;
-    lastTestDate?: string;
+    schoolData: SchoolData;
     createdAt: string;
     id?: string;
+    type: 'professor' | 'student';
 }
 
 // Referência para o nó de usuários no banco de dados
@@ -144,27 +139,5 @@ export default class UserModel {
                 </html>
         `,
         });
-    }
-
-    // Método para adicionar uma nova ContentNote ao usuário
-    static async addContentNoteToUser(email: string, contentNote: ContentNote): Promise<void> {
-        const user = await UserModel.getUserByEmail(email);
-        if (!user) {
-            throw new Error('Usuário não encontrado');
-        }
-
-        const updatedContentNotes = user.contentNotes ? [...user.contentNotes, contentNote] : [contentNote];
-        await usersRef.child(user.id).update({ contentNotes: updatedContentNotes });
-    }
-
-    // Método para adicionar um novo CompletedContent ao usuário
-    static async addCompletedContentToUser(email: string, completedContent: CompleletedContent): Promise<void> {
-        const user = await UserModel.getUserByEmail(email);
-        if (!user) {
-            throw new Error('Usuário não encontrado');
-        }
-
-        const updatedCompletedContent = user.completedContent ? [...user.completedContent, completedContent] : [completedContent];
-        await usersRef.child(user.id).update({ completedContent: updatedCompletedContent });
     }
 }

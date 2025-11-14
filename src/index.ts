@@ -6,6 +6,7 @@ import userRoutes from './routes/userRoutes';
 import forumRoutes from './routes/forumRoute';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import schoolDataRoutes from './routes/schoolDataRoutes';
 
 //Configuração do dotenv
 dotenv.config();
@@ -23,6 +24,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 app.use('/user', userRoutes);
 app.use('/forum', forumRoutes);
+app.use('/schoolData', schoolDataRoutes);
 
 // Definição da porta do servidor
 console.log('process.env.PRODUCTION', process.env.PRODUCTION);

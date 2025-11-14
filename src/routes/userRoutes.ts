@@ -64,6 +64,7 @@ userRoutes.delete('/:email', async (req: Request, res: Response) => {
 // Rota de login
 userRoutes.post('/login', async (req: Request, res: Response) => {
     try {
+        console.log('body', req.body);
         const { email, password } = req.body;
         const response = await userController.login(email, password);
         res.status(200).send(response);
@@ -83,30 +84,6 @@ userRoutes.post('/recover-password', async (req: Request, res: Response) => {
         res.status(500).send(error.message ?? "Dados de usuário incorretos.");
     }
 
-});
-
-// Rota para adicionar uma nova ContentNote ao usuário
-userRoutes.post('/:email/content-note', async (req: Request, res: Response) => {
-    try {
-        const email = req.params.email;
-        const contentNote = req.body;
-        const response = await userController.addContentNote(email, contentNote);
-        return res.status(200).send(response);
-    } catch (error) {
-        res.status(500).send(error.message ?? "Não foi possível adicionar a ContentNote");
-    }
-});
-
-// Rota para adicionar um novo CompletedContent ao usuário
-userRoutes.post('/:email/completed-content', async (req: Request, res: Response) => {
-    try {
-        const email = req.params.email;
-        const completedContent = req.body;
-        const response = await userController.addCompletedContent(email, completedContent);
-        return res.status(200).send(response);
-    } catch (error) {
-        res.status(500).send(error.message ?? "Não foi possível adicionar o CompletedContent");
-    }
 });
 
 export default userRoutes;
